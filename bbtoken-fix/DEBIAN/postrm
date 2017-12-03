@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+package_name=bbtoken-fix
+case "$1" in
+  remove)
+    rm -f /etc/systemd/system/bbtoken.service
+    ;;
+  purge)
+    rm -f /etc/systemd/system/bbtoken.service
+;;
+esac
+exit 0

@@ -1,0 +1,11 @@
+Package: bbtoken-fix
+Version: 1.0.0-1big1
+Pre-Depends: bbtokentool
+Architecture: all
+Maintainer: Bruno Gonçalves <bigbruno@gmail.com>
+Section: admin
+Priority: optional
+Installed-Size:24
+Description: Corrige o pacote bbtokentool e permite o uso do bb token a partir do kernel 3.15
+
+

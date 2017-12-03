@@ -1,0 +1,4 @@
+a811a0e90b3b23a3dc29ad8375a70ab3  DEBIAN/postrm
+b37f5a3e993c1aec198972f7100bd711  DEBIAN/postinst
+6b5aeb8ab067d380d1f3d64f8dcc1a2d  DEBIAN/control
+d41d8cd98f00b204e9800998ecf8427e  DEBIAN/md5sums

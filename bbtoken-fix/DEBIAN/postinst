@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e
+package_name=bbtoken-fix
+
+sed -i 's|interruptible_sleep_on_timeout.*|msleep_interruptible (RETRY_TIMEOUT);|g' /usr/src/wdtoken-1.0.0/wdtoken.c
+sed -i '/<linux\/signal.h>/{p;s/.*/#include <linux\/sched\/signal.h>/;}' /usr/src/wdtoken-1.0.0/wdtoken.c
+/usr/src/wdtoken-1.0.0/dkmsinstaller uninstall
+/usr/src/wdtoken-1.0.0/dkmsinstaller install
+/etc/init.d/wd_udk restart
+/usr/lib/watchdata/wdkserver/WdkmgrServer
+
+#Executando automaticamente no boot via systemd
+echo '[Unit]
+Description=bbtoken
+
+[Service]
+Type=forking
+ExecStartPre=/etc/init.d/wd_udk start
+ExecStart=/usr/lib/watchdata/tools/WdkmgrServer
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target' > /etc/systemd/system/bbtoken.service
+
+systemctl enable bbtoken
+service bbtoken start
+
